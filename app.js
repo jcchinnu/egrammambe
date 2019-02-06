@@ -186,6 +186,12 @@ app.get('/fun', function (req, res) {
     res.end(JSON.stringify(results));
   });
 });
+app.put('/fun', function (req, res) {
+  connection.query('UPDATE `fun` SET `amount`=?,`wrv`=? WHERE `uscheme`=?', [ req.body.amount,req.body.wrv,req.body.uscheme], function (error, results, fields) {
+    if (error) throw error;
+    res.end(JSON.stringify(results));
+  });
+});
 
 app.listen(3001, function() {
   console.log('Example app listening on port 3001!');
